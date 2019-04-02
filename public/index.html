@@ -1,0 +1,148 @@
+<!-- index.html -->
+<!doctype html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="mhsManager">
+<head>
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+    <title>Input Data Mahasiswa</title>
+
+    <!-- SCROLLS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+    <style>
+        html                    { overflow-y:scroll; }
+        body                    { padding-top:50px; }
+        #todo-list              { margin-bottom:30px; }
+    </style>
+
+    <!-- SPELLS -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
+    <script src="core.js"></script>
+
+</head>
+<!-- SET THE CONTROLLER AND GET ALL TODOS -->
+<body ng-controller="mainController">
+    <div class="container">
+
+        <!-- HEADER AND TODO COUNT -->
+        <div class="jumbotron text-center">
+            <h1>Sistem Mahasiswa</h1>
+        </div>
+        <div id="mhs-list" class="row">             
+                <div class="form-group">
+                    <h2>Input Mahasiswa</h2>
+                    <form>
+                        <table class="table table-striped" width="90%">
+                            <colgroup>
+                                <col width="15%" />
+                                <col width="15%" />
+                                <col width="15%" />
+                                <col width="15%" />
+                                <col width="*" />
+                            </colgroup>
+                            <tr>
+                                <td>
+                                    <input type="text" placeHolder="Nama" class="form-control text-center" width="100%" ng-model="formData.nama"/>
+                                </td>
+                                <td>
+                                    <input type="text" placeHolder="Nim" class="form-control text-center" width="100%"ng-model="formData.nim"/>
+                                </td>
+                                <td>
+                                    <input type="text" placeHolder="Jurusan" class="form-control text-center" width="100%"ng-model="formData.jurusan"/>
+                                </td>
+                                <td>
+                                    <input type="text" placeHolder="Kelas" class="form-control text-center" width="100%"ng-model="formData.kelas"/>
+                                </td>
+                                <td>
+                                    <input type="submit" class="btn btn-primary" value="Add"  ng-click="createMhs()" width="100%"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                    <h2>Update Data Mahasiswa</h2>
+                    <form>
+                        <table class="table table-striped" width="90%">
+                            <colgroup>
+                                <col width="15%" />
+                                <col width="15%" />
+                                <col width="15%" />
+                                <col width="15%" />
+                                <col width="*" />
+                            </colgroup>
+                            <tr>
+                                <td>
+                                    <select id="mhsId" placeHolder="NIM" class="form-control text-center" ng-model="formDataUpdate.id" required>
+                                        <option ng-repeat="mhs in mhs" value="{{mhs._id}}">
+                                            {{mhs.nim}}
+                                        </option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="text" placeHolder="Nama" class="form-control text-center" width="100%"ng-model="formDataUpdate.nama"/>
+                                </td>
+                                <td>
+                                    <input type="text" placeHolder="Jurusan" class="form-control text-center" width="100%"ng-model="formDataUpdate.jurusan"/>
+                                </td>
+                                <td>
+                                    <input type="text" placeHolder="Kelas" class="form-control text-center" width="100%"ng-model="formDataUpdate.kelas"/>
+                                </td>
+                                <td>
+                                    <input type="submit" class="btn btn-primary" value="Update"  ng-click="updateMhs()" width="100%"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+                    <h2>Data</h2>
+                <table class="table table-striped" width="90%">
+                    <colgroup>
+                        <col width="15%" />
+                        <col width="15%" />
+                        <col width="15%" />
+                        <col width="15%" />
+                        <col width="15%" />
+                        <col width="*" />
+                    </colgroup>
+                    <tr>
+                        <th>
+                            Nama
+                        </th>
+                        <th>
+                            NIM
+                        </th>
+                        <th>
+                            Jurusan
+                        </th>
+                        <th>
+                            Kelas
+                        </th>
+                        <th>
+                            Aksi
+                        </th>
+                    </tr>
+                    <tr ng-repeat="mhs in mhs">
+                        <td>
+                            {{ mhs.nama }}
+                        </td>
+                        <td>
+                            {{ mhs.nim }}
+                        </td>
+                        <td>
+                            {{ mhs.jurusan }}
+                        </td>
+                        <td>
+                            {{ mhs.kelas }}
+                        </td>
+                        <td>
+                            <input type="submit" class="btn btn-warning" value="Delete"  ng-click="deleteMhs(mhs._id)"/>
+                        </td>
+                    </tr>
+                </table>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+		"name": "MiniChallenge",
+		"version": "0.0.1",
+		"author": "Harris Maulana Luthfi",
+		"description": "coba crud dengan nodejs",
+		"scripts": {
+				"start": "node app.js"
+		},
+		"license": "MIT",
+		"dependencies": {
+				"express": "^4.16.4",
+				"method-override": "^3.0.0",
+				"mongoose": "^5.4.20",
+				"morgan": "^1.9.1"
+		}
+}
